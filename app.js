@@ -26,12 +26,15 @@ removeBtn.addEventListener('click',function(e){
 })
 
 async function searchGiphy(giphy) {
-
+    try {
         const res = await axios.get(`http://api.giphy.com/v1/gifs/search?q=${giphy}&api_key=MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym`)
 
         const randomPic = Math.floor((Math.random() * 50) + 1)
-        
+    
         createGiphy(res.data.data[randomPic].images.downsized_medium.url)
+    }catch(e) {
+        alert("item not located!")
+    }
 }
 
 function createGiphy(url) {
